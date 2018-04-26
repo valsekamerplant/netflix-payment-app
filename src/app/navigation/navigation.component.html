@@ -1,0 +1,6 @@
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/users">Users</a>
+  <a class="right" *ngIf="authservice.user" [routerLink]="['/login']">Logout</a>
+  <a class="right" *ngIf="!authservice.user" [routerLink]="['/register']">Register</a>
+</nav>

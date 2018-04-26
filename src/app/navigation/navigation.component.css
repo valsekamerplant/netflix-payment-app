@@ -1,0 +1,22 @@
+nav {
+    padding: 15px 20px;
+    background: red;
+}
+
+a {
+    margin: 10px 5px;
+    color: white;
+}
+
+a:first-child {
+    padding-left: 0px;
+}
+
+a:hover {
+    text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.right {
+    margin: 0 5px;
+    float: right;
+}

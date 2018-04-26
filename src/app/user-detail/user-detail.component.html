@@ -1,0 +1,18 @@
+<div *ngIf="user">
+  <h2> <input [disabled]="user.isOwner" [(ngModel)]="user.name" placeholder="name" /></h2>
+  <div *ngIf="!user.isOwner;else ownerTemplate"> subscriptions ends on: {{ formatedDate }}</div>
+  <ng-template #ownerTemplate>
+      <div> This user is the owner of the subscription</div>
+  </ng-template>
+</div>
+
+<div *ngIf="isLoggedIn && !user.isOwner">
+  <div>
+    <label>extend subscription for:</label>
+    <select [(ngModel)]="extendFor" placeholder="extend">
+      <option selected disabled hidden>Choose here</option>
+      <option *ngFor="let extend of maxExtend" value="{{extend}}">{{extend}} month{{extend > 1 ? 's' : ''}}</option>
+    </select>
+  </div>
+  <button (click)="save()">save</button>
+</div>

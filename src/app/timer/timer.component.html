@@ -1,0 +1,9 @@
+<span *ngIf="timeLeft.asMilliseconds() > 0; else expiredTemplate">
+  <span>{{timeLeft.years() > 0 ? timeLeft.years() + 'years': '' }}</span>
+  <span>{{timeLeft.months() > 0 ? timeLeft.months() + 'months': '' }}</span>
+  <span>{{(timeLeft.days() > 0 && (timeLeft.months() <= 0 && timeLeft.years() <= 0))? timeLeft.days() + 'days': ''}} </span>
+  <span>{{(timeLeft.hours() > 0 && (timeLeft.days() <= 0 && timeLeft.months() <= 0 && timeLeft.years() <= 0))? timeLeft.hours() + 'hours': ''}} </span>
+</span>
+<ng-template #expiredTemplate>
+    Expired
+</ng-template>

@@ -1,0 +1,18 @@
+
+<div class="grid" *ngIf="users.length > 0; else usersTemplate">
+  <h3>Users that expire</h3>
+  <a
+      *ngFor="let user of users"
+      class="col-1-4"
+      routerLink="/user/{{user._id}}"
+  >
+    <div class="module user">
+      <h4>{{user.name}} - <app-timer [endDate]="user.expireDate"></app-timer></h4>
+    </div>
+  </a>
+</div>
+
+<ng-template #usersTemplate>
+  <h4> no users that expire within a month</h4>
+  <a routerLink="/users">Show all users</a>
+</ng-template>

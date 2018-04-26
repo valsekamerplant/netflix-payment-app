@@ -1,0 +1,6 @@
+{
+  "apiUrl": "http://localhost:3010/",
+  "debug": true,
+  "maxUsers": 6,
+  "maxExtend": 12
+}

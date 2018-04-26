@@ -1,0 +1,62 @@
+<h2> Subscribers </h2>
+<div class="row">
+  <div class="col-8">
+    <ul>
+      <li *ngFor="let user of users" class="row" >
+        <a routerLink="/user/{{user._id}}" class="col-4 col-md-4">
+          {{ user.name }}
+        </a>
+
+        <div class="col-4 col-md-4" *ngIf="!user.isOwner;else ownerTemplate">
+          <app-timer [endDate]="user.expireDate"></app-timer>
+        </div>
+
+        <ng-template #ownerTemplate>
+          Owner
+        </ng-template>
+
+        <div class="col-4 col-md-6" *ngIf="!user.isOwner;">
+          <button (click)="removeUser(user._id)" >remove user</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <div *ngIf="users.length < maxUsers" class="col-4">
+    <h2>new Subscriber</h2>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="newUser.name" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="expireDate">Subscription</label>
+        <select class="form-control" id="expireDate"
+                required
+                [(ngModel)]="newUser.expireDate" name="expireDate"
+                #expireDate="ngModel">
+          <option *ngFor="let extend of maxExtend" value="{{extend}}">{{extend}} month{{extend > 1 ? 's' : ''}}</option>
+        </select>
+        <div [hidden]="expireDate.valid || expireDate.pristine" class="alert alert-danger">
+          Please add how long the user is subscribed for
+        </div>
+      </div>
+
+      <input type="hidden" class="form-control" id="alterEgo"
+             [(ngModel)]="newUser.owner" name="alterEgo">
+      <div class="actions">
+        <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
